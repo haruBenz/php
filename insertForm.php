@@ -111,14 +111,13 @@ require('Dbconnects.php');
                       name="member_gender"
                       id="gridRadios1"
                       value="Male"
-                      checked
                     />
                     <label class="form-check-label" for="gridRadios1">
                       Male
                     </label>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input
-                      class="form-check-input"
+                      
                       type="radio"
                       name="member_gender"
                       id="gridRadios2"
@@ -170,5 +169,7 @@ require('Dbconnects.php');
       integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
       crossorigin="anonymous"
     ></script>
+    <script>function myFunction() {document.getElementById("myRadio").disabled = true;}
+  </script>
   </body>
 </html>
