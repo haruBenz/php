@@ -15,7 +15,8 @@ require('Dbconnects.php');
 
 
 if($result){
-    echo "done";
+    header("location:patients-lits.php");
+    exit(0);
 }else{
     echo"miss";
 }

@@ -1,6 +1,15 @@
 <?php
-require('Dbconnects.php');
+require("Dbconnects.php");
+$member_HN=$_GET["id"];
+
+$sql="SELECT * FROM patient WHERE member_HN =$member_HN";
+
+$result=mysqli_query($connect,$sql);
+$row=mysqli_fetch_assoc($result);
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -72,15 +81,20 @@ require('Dbconnects.php');
         </div>
       </div>
     </nav>
-    <h1 class="center-align">Register Patient</h1>
+    <h1 class="center-align">แบบฟอร์มแก้ไขข้อมูลผู้ป่วย</h1>
     <div class="container">
       <div class="card">
         <div class="card-body">
-          <form action="insertData.php" method="POST">
+          <form action="updatetData.php" method="POST">
             <div class="row mb-3">
               <label for="inputText1" class="col-sm-2 col-form-label">HN</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputText1" name="member_HN"/>
+                <input type="text" 
+                class="form-control" 
+                id="inputText1" 
+                name="member_HN"
+                value="<?php  echo $row["member_HN"];?>"
+                />
               </div>
             </div>
             <div class="row mb-3">
@@ -88,7 +102,12 @@ require('Dbconnects.php');
                 >Firstname</label
               >
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputText2" name="member_fname"/>
+                <input type="text" 
+                class="form-control" 
+                id="inputText2" 
+                name="member_fname"
+                value="<?php  echo $row["member_fname"];?>"
+                />
               </div>
             </div>
             <div class="row mb-3">
@@ -96,37 +115,29 @@ require('Dbconnects.php');
                 >Surname</label
               >
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputText2" name="member_lname"/>
+                <input type="text" 
+                class="form-control" 
+                id="inputText2" 
+                name="member_lname"
+                value="<?php  echo $row["member_lname"];?>"
+                />
               </div>
             </div>
             <fieldset class="row mb-3">
-              <div class="row">
-                <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
-                <div class="col-sm-10">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="member_gender"
-                      id="gridRadios1"
-                      value="Male"
-                    />
-                    <label class="form-check-label" for="gridRadios1">
-                      Male
-                    </label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="member_gender"
-                      id="gridRadios2"
-                      value="Female"
-                    />
-                    <label class="form-check-label" for="gridRadios2">
-                      Female
-                    </label>
-                  </div>
-                </div>
+              <div class="form-group">
+                
+                <legend class="col-form-label col-sm-2 pt-0" for="member_gender">Gender</legend>
+                <?php 
+                if($row["member_gender"] == "Male"){
+                  echo "<input type='radio' name='member_gender' value='Male' class='form-check-input' checked>Male";
+                  echo "<input type='radio' name='member_gender' value='Female' class='form-check-input'>Female";
+                
+                }else{ 
+                  echo "<input type='radio' name='member_gender' value='Male' class='form-check-input' >Male";
+                  echo "<input type='radio' name='member_gender' value='Female' class='form-check-input' checked>Female";
+                }
+                ?>
+                
               </div>
             </fieldset>
             <div class="row mb-3">
@@ -134,7 +145,12 @@ require('Dbconnects.php');
                 >Birth</label
               >
               <div class="col-sm-10">
-                <input type="date" class="form-control" id="inputText3" name="member_birth" />
+                <input type="date" 
+                class="form-control" 
+                id="inputText3" 
+                name="member_birth" 
+                value="<?php  echo $row["member_birth"];?>"
+                />
               </div>
             </div>
             <div class="row mb-3">
@@ -142,12 +158,20 @@ require('Dbconnects.php');
                 >Age</label
               >
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputText2" name="member_age"/>
+                <input type="text" 
+                class="form-control" 
+                id="inputText2" 
+                name="member_age"
+                value="<?php  echo $row["member_age"];?>"
+                />
               </div>
             </div>
             <div class="center-align">
-              <button type="submit" class="btn btn-primary">ACCEPT</button>
+              <input type="submit" value="อัปเดตข้อมูล" class="btn btn-success">
+              <input type="reset" value="ล้างข้อมูล" class="btn btn-danger">
+              <a href="patients-lits.php" class="btn btn-secondary">กลับหน้าก่อนนี้</a>
             </div>
+            
           </form>
         </div>
       </div>
